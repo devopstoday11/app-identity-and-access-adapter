@@ -206,7 +206,7 @@ func (s *RemoteService) loadDiscoveryEndpoint() (interface{}, error) {
 		zap.L().Debug("Could not sync discovery endpoint", zap.String("url", s.discoveryURL), zap.Error(err))
 		return nil, err
 	} else if res.StatusCode != http.StatusOK {
-		zap.L().Debug("Could not sync discovery endpoint", zap.String("url", s.discoveryURL), zap.Error(oa2Err))
+		zap.L().Debug("Could not sync discovery endpoint", zap.String("url", s.discoveryURL), zap.Int("status", res.StatusCode), zap.Error(oa2Err))
 		return nil, oa2Err
 	}
 
