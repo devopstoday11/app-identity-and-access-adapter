@@ -92,8 +92,8 @@ func generateSessionIDCookie(c client.Client, value *string, secure bool) *http.
 		Value:    v,
 		Path:     "/",
 		Secure:   secure,
-		SameSite: http.SameSiteStrictMode, // possible to change to Lax mode if that makes problems
-		HttpOnly: true,                    // Cookie available to HTTP protocol only (no JS access)
+		SameSite: http.SameSiteLaxMode,
+		HttpOnly: true, // Cookie available to HTTP protocol only (no JS access)
 		//TODO: possible to use Expires instead of Max-Age once Istio supports it,
 		// see https://github.com/istio/istio/pull/21270
 		//Expires:  time.Now().Add(time.Hour * time.Duration(2160)), // 90 days
