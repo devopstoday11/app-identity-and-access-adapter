@@ -45,6 +45,11 @@ func (e *OidcConfigAddEventHandler) HandleAddUpdateEvent() {
 	if e.Obj.Spec.AuthMethod == "" {
 		e.Obj.Spec.AuthMethod = "client_secret_basic"
 	}
+
+	if len(e.Obj.Spec.DiscoveryURL) == 0 {
+		zap.L().Warn("Empty discoveryURL in OidcConfig", zap.String("name", e.Obj.ObjectMeta.Name), zap.String("namespace", e.Obj.ObjectMeta.Namespace))
+	}
+
 	authorizationServer := authserver.New(e.Obj.Spec.DiscoveryURL)
 	jwksURL := authorizationServer.JwksEndpoint()
 	if jwksURL != "" {
