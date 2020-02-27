@@ -77,7 +77,7 @@ func New(discoveryEndpoint string) AuthorizationServerService {
 		zap.L().Debug("Initialization from discovery endpoint failed. Will retry later.", zap.String("url", discoveryEndpoint))
 		return s
 	}
-	zap.L().Debug("Initialized discovery configuration successfully", zap.String("url", discoveryEndpoint))
+	zap.L().Debug("Initialized successfully using discovery endpoint", zap.String("url", discoveryEndpoint))
 	return s
 }
 
