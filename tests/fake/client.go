@@ -10,11 +10,12 @@ type TokenResponse struct {
 }
 
 type Client struct {
-	Server        authserver.AuthorizationServerService
-	TokenResponse *TokenResponse
-	ClientName    string
-	ClientID      string
-	ClientSecret  string
+	Server         authserver.AuthorizationServerService
+	TokenResponse  *TokenResponse
+	ClientName     string
+	ClientID       string
+	ClientCallback string
+	ClientSecret   string
 	Scopes        []string
 }
 

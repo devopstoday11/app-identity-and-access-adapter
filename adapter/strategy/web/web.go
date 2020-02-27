@@ -366,15 +366,17 @@ func (w *WebStrategy) getEncryptionSecret() (Encryptor, error) {
 	if w.encrpytor != nil {
 		return w.encrpytor, nil
 	}
+
 	w.mutex.Lock()
+	defer w.mutex.Unlock()
+
 	// Once this thread has the lock check again to see if it had been set while waiting
 	if w.encrpytor != nil {
-		w.mutex.Unlock()
 		return w.encrpytor, nil
 	}
+
 	// We need to generate a new key set
 	sc, err := w.getOrGenerateEncryptionSecret()
-	w.mutex.Unlock()
 	return sc, err
 }
 

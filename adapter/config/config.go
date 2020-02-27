@@ -40,6 +40,6 @@ func NewConfig() *Config {
 			},
 			Value: 16,
 		},
-		SecureCookies: true,
+		SecureCookies: false,
 	}
 }
