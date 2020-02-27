@@ -24,6 +24,7 @@ type OidcConfigSpec struct {
 	DiscoveryURL    string          `json:"discoveryUrl"`
 	ClientSecret    string          `json:"clientSecret"`
 	ClientSecretRef ClientSecretRef `json:"clientSecretRef"`
+	Scopes          []string        `json:"scopes"`
 }
 
 type ClientSecretRef struct {

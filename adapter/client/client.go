@@ -2,6 +2,7 @@ package client
 
 import (
 	"errors"
+	"strings"
 
 	"go.uber.org/zap"
 
@@ -15,6 +16,7 @@ type Client interface {
 	ID() string
 	Callback() string
 	Secret() string
+	Scope() string
 	AuthorizationServer() authserver.AuthorizationServerService
 	ExchangeGrantCode(code string, redirectURI string) (*authserver.TokenResponse, error)
 	RefreshToken(refreshToken string) (*authserver.TokenResponse, error)
@@ -39,6 +41,13 @@ func (c *remoteClient) Callback() string {
 
 func (c *remoteClient) Secret() string {
 	return c.ClientSecret
+}
+
+func (c *remoteClient) Scope() string {
+	if len(c.Scopes) == 0 {
+		return "openid profile email"
+	}
+	return strings.Join(c.Scopes, " ")
 }
 
 func (c *remoteClient) AuthorizationServer() authserver.AuthorizationServerService {

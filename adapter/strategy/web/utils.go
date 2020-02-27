@@ -60,7 +60,7 @@ func generateAuthorizationURL(c client.Client, redirectURI string, state string)
 		"client_id":     {c.ID()},
 		"response_type": {"code"},
 		"redirect_uri":  {redirectURI},
-		"scope":         {"openid profile email"},
+		"scope":         {c.Scope()},
 		"state":         {state},
 	}
 
